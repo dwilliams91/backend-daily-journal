@@ -39,17 +39,17 @@ export const EntryForm = (props) => {
         if (editMode) {
             updateEntry({
                 id: entry.id,
-                concept: entry.concept,
+                topic: entry.concept,
                 entry: entry.entry,
                 date: entry.date,
                 moodId: parseInt(entry.moodId)
             })
         } else {
             addEntry({
-                concept: entry.concept,
+                topic: entry.concept,
                 entry: entry.entry,
                 date: Date.now(),
-                moodId: parseInt(entry.moodId)
+                mood_id: parseInt(entry.moodId)
             })
         }
         setEntry({ concept: "", entry: "", moodId: 0 })
@@ -91,7 +91,7 @@ export const EntryForm = (props) => {
                         <option value="0">Select a mood</option>
                         {moods.map(m => (
                             <option key={m.id} value={m.id}>
-                                {m.label}
+                                {m.mood}
                             </option>
                         ))}
                     </select>

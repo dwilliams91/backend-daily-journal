@@ -32,6 +32,7 @@ export const EntryProvider = props => {
   };
 
   const addEntry = Entry => {
+    console.log(Entry)
     return fetch("http://localhost:8088/entries", {
       method: "POST",
       headers: {
