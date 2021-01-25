@@ -35,6 +35,8 @@ export const EntryForm = (props) => {
 
 
     const constructNewEntry = () => {
+        // put hashtag logic here
+        console.log(entry)
 
         if (editMode) {
             updateEntry({
@@ -49,7 +51,8 @@ export const EntryForm = (props) => {
                 topic: entry.concept,
                 entry: entry.entry,
                 date: Date.now(),
-                mood_id: parseInt(entry.moodId)
+                mood_id: parseInt(entry.moodId),
+                hashtag_id: entry.hashtag
             })
         }
         setEntry({ concept: "", entry: "", moodId: 0 })
@@ -76,6 +79,17 @@ export const EntryForm = (props) => {
                         proptype="varchar"
                         placeholder="Entry"
                         value={entry.entry}
+                        onChange={handleControlledInputChange}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="hashtag">hashtag: </label>
+                    <input type="text" name="hashtag" required className="form-control"
+                        proptype="varchar"
+                        placeholder="hashtag"
+                        value={entry.hashtag}
                         onChange={handleControlledInputChange}
                     />
                 </div>

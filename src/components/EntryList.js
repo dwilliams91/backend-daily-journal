@@ -2,21 +2,35 @@ import React, { useContext, useEffect, useState } from "react";
 import { EntryContext } from "./EntryProvider";
 import { Entry } from "./Entry";
 import { MoodContext } from "./mood/MoodProvider";
+import {HashtagContext} from "./hashtag/HashtagProvider"
 
 export const EntryList = () => {
   const { entries, getEntries, searchEntries } = useContext(EntryContext);
+  const { hashtags, getHashtags}= useContext(HashtagContext)
   const { moods, getMoods } = useContext(MoodContext);
   const [filteredEntries, setEntries] = useState([]);
   const [searchedTerm, setTerm] = useState("");
   const [moodSelected, setMoodSelected] = useState("");
 
   useEffect(() => {
+    
+    getHashtags()
     getEntries()
-      .then(getMoods)
+    getMoods()
+      
+    
   }, []);
 
+
+
   useEffect(() => {
-    setEntries(entries)
+    getHashtags()
+    .then(setEntries(entries))
+    .then(()=>{
+    console.log("is this hitting?")
+    console.log(hashtags)
+    })
+    
   }, [entries])
 
   useEffect(() => {
@@ -34,7 +48,7 @@ export const EntryList = () => {
   return (
     <>
       <h1>Filter Entries</h1>
-
+      
       {
         moods.map(mood => {
           return <>
@@ -72,7 +86,7 @@ export const EntryList = () => {
 
       <div className="entries">
         {filteredEntries.map(entry => {
-          return <Entry key={entry.id} entry={entry} moods={moods} />;
+          return <Entry key={entry.id} entry={entry} moods={moods} hashtags={hashtags} />;
         })}
       </div>
 
