@@ -18,7 +18,7 @@ export const Entry = ({ entry, moods, hashtags }) => {
       <div className="entry__entry">{entry.entry}</div>
       <div className="entry__date">{entry.date}</div>
       <div className="entry__mood">{mood.mood}</div>
-      <div className="entry__hashtag">{hashtag.tag}</div>
+     <div className="entry__hashtag">{hashtag && hashtag.tag}</div>
 
 
       <button onClick={
